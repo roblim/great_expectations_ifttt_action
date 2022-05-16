@@ -1,0 +1,43 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "normal_data",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "max_value": 100,
+        "min_value": 1
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "y",
+        "max_value": 4,
+        "min_value": -4
+      },
+      "meta": {}
+    }
+  ],
+  "meta": {
+    "citations": [
+      {
+        "batch_definition": null,
+        "batch_kwargs": null,
+        "batch_markers": null,
+        "batch_parameters": null,
+        "batch_request": {
+          "data_asset_name": "off.csv",
+          "data_connector_name": "csvs_example_data_connector",
+          "datasource_name": "csvs",
+          "limit": 1000
+        },
+        "batch_spec": null,
+        "citation_date": "2021-05-27T18:38:20.664517Z",
+        "comment": "Created suite added via CLI"
+      }
+    ],
+    "great_expectations_version": "0.13.19"
+  }
+}
