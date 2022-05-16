@@ -1,2 +1,2 @@
-# great_expectations_ifttt_plugin
+# great_expectations IFFF Action
 Connect Great Expectations to the IoT with IFTTT
