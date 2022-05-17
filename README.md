@@ -38,4 +38,22 @@ Validate Data Using a Great Expectations -> Trigger IFTTT Webhook -> Do Somethin
 ### Test Things Out
 
 Check if everything is working by running your Checkpoint. One of the quickest ways is using the Great Expectation CLI tool:
-`great_expectations run checkpoint <ENTER CHECKPOINT NAME HERE>`.
+`great_expectations run checkpoint <ENTER CHECKPOINT NAME HERE>`. After the Checkpoint completes validating your data, the above configured `IFTTTNotificationAction` will make a POST request to your IFTTT webhook with the following payload structure:
+
+```json
+{
+    "success": true,
+    "checkpoint": "room_temperature",
+    "expectation_suite_name": "normal_values",
+    "data_asset_name": "123_bush_street_sensor_data",
+    "run_id": {
+      "run_name": "some_run_name",
+      "run_time": "some_run_time"
+    },
+    "batch_id": "some_id",
+    "successful_expectations_count": 10,
+    "evaluated_expectations_count": 10
+}
+```
+
+You can use information found in the payload to modify the behavior of your IFTTT applet or other downstream actions or events.
