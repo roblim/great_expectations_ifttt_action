@@ -23,7 +23,7 @@ action_list:
       module_name: ifttt_action
       webhook_key: ${IFTTT_WEBHOOK_KEY}
       event_name: ge_validation
-      notify_on: all
+      notify_on: all  # failure, or success
 evaluation_parameters: {}
 runtime_configuration: {}
 validations:
