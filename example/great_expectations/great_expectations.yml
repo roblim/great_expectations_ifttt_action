@@ -57,7 +57,7 @@ config_variables_file_path: uncommitted/config_variables.yml
 
 # The plugins_directory will be added to your python path for custom modules
 # used to override and extend Great Expectations.
-plugins_directory: /Users/rob/Dropbox/coding/superconductive/great_expectations_ifttt_action/ifttt_action
+plugins_directory: ../../ifttt_action
 
 stores:
 # Stores are configurable places to store things like Expectations, Validations
