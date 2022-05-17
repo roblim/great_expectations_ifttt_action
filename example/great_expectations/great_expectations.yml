@@ -14,19 +14,24 @@ config_version: 3.0
 # You can use the CLI command `great_expectations datasource new` to help you
 # add a new datasource. Read more at https://docs.greatexpectations.io/en/latest/reference/core_concepts/datasource.html
 datasources:
-  csvs:
-    class_name: Datasource
+  iot_temperature:
     execution_engine:
       class_name: PandasExecutionEngine
       module_name: great_expectations.execution_engine
+    class_name: Datasource
     data_connectors:
-      csvs_example_data_connector:
+      default_inferred_data_connector_name:
         default_regex:
           group_names:
             - data_asset_name
           pattern: (.*)
-        base_directory: ../data
+        base_directory: ../sample_data/
         class_name: InferredAssetFilesystemDataConnector
+        module_name: great_expectations.datasource.data_connector
+      default_runtime_data_connector_name:
+        class_name: RuntimeDataConnector
+        batch_identifiers:
+          - default_identifier_name
         module_name: great_expectations.datasource.data_connector
     module_name: great_expectations.datasource
 
@@ -52,7 +57,7 @@ config_variables_file_path: uncommitted/config_variables.yml
 
 # The plugins_directory will be added to your python path for custom modules
 # used to override and extend Great Expectations.
-plugins_directory: plugins/
+plugins_directory: /Users/rob/Dropbox/coding/superconductive/great_expectations_ifttt_action/ifttt_action
 
 stores:
 # Stores are configurable places to store things like Expectations, Validations
@@ -86,6 +91,13 @@ stores:
       suppress_store_backend_id: true
       base_directory: checkpoints/
 
+  profiler_store:
+    class_name: ProfilerStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      suppress_store_backend_id: true
+      base_directory: profilers/
+
 expectations_store_name: expectations_store
 validations_store_name: validations_store
 evaluation_parameter_store_name: evaluation_parameter_store
@@ -107,6 +119,7 @@ data_docs_sites:
       class_name: DefaultSiteIndexBuilder
 
 anonymous_usage_statistics:
-  data_context_id: d84c1715-f653-4c82-a60d-c88a06c3ea50
-  enabled: false
+  usage_statistics_url: https://qa.stats.greatexpectations.io/great_expectations/v1/usage_statistics
+  data_context_id: 2cfb9c68-895d-4f69-9c00-364da4b8cf7b
+  enabled: true
 notebooks:

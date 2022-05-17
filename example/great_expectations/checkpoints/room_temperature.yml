@@ -1,0 +1,39 @@
+name: room_temperature
+config_version: 1.0
+template_name:
+module_name: great_expectations.checkpoint
+class_name: Checkpoint
+run_name_template: '%Y%m%d-%H%M%S-my-run-name-template'
+expectation_suite_name:
+batch_request: {}
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: store_evaluation_params
+    action:
+      class_name: StoreEvaluationParametersAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction
+      site_names: []
+  - name: ifttt_webhook
+    action:
+      class_name: IFTTTNotificationAction
+      module_name: ifttt_action
+      webhook_key: ${IFTTT_WEBHOOK_KEY}
+      event_name: ge_validation
+      notify_on: all
+evaluation_parameters: {}
+runtime_configuration: {}
+validations:
+  - batch_request:
+      datasource_name: iot_temperature
+      data_connector_name: default_inferred_data_connector_name
+      data_asset_name: IOT-temp.csv
+      data_connector_query:
+        index: -1
+    expectation_suite_name: room_temperature
+profilers: []
+ge_cloud_id:
+expectation_suite_ge_cloud_id:
